@@ -1,0 +1,142 @@
+/**Hospital.cpp*/
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include "Doctor.h"
+#include "Patient.h"
+#include "Hospital.h"
+
+using namespace std;
+typedef Doctor* NodeItemType;
+
+Hospital::Hospital(string name){
+  head = NULL;
+  tail = NULL;
+}
+
+void Hospital::hireDoctor(string first, string last){
+  Doctor* d_node;
+  d_node = new Doctor(first, last);
+  if (head == NULL){
+    head = d_node;
+    tail = d_node;
+    d_node -> nextDoc = NULL;
+    d_node -> prevDoc = NULL;
+  }
+  
+  else{
+    tail -> nextDoc = d_node;
+    d_node -> prevDoc = tail;
+    d_node -> nextDoc = NULL;
+    tail = d_node;
+
+  }
+}
+
+NodeItemType Hospital::searchDoctor(string first, string last){
+  Doctor* iter;
+  iter = head;
+  if (head -> firstname == first && head -> lastname == last){
+    return head;
+  }
+  while(NULL != iter){
+    if( iter -> firstname == first && iter -> lastname == last){
+      return iter;
+    }
+    iter = iter -> nextDoc;
+  }
+  return NULL;
+}
+
+void Hospital::fireDoctor(string first, string last){
+  Doctor *temp; 
+  temp = searchDoctor(first, last);
+  if (temp == NULL){
+    cout << "Doctor " << first << " " << last << " not found\n";
+    cout << "Unable to fire doctor.\n";
+  }
+  else if (temp -> nextDoc == NULL){
+    Doctor* before;
+    before = temp -> prevDoc;
+    before -> nextDoc = NULL;
+    tail = temp -> prevDoc;
+    temp -> deleteAllPatients();
+    delete temp;
+  }
+  else if (temp -> prevDoc == NULL){
+    Doctor* after;
+    after = temp -> nextDoc;
+    after -> prevDoc = NULL;
+    head = temp -> nextDoc;
+    temp -> deleteAllPatients();
+    delete temp;
+  }
+  else{
+    Doctor* before;
+    Doctor* after;
+    before = temp -> prevDoc;
+    after = temp -> nextDoc;
+    before -> nextDoc = temp -> nextDoc;
+    after -> prevDoc = temp -> prevDoc;
+    temp -> deleteAllPatients();
+    delete temp;
+  }
+}
+
+void Hospital::addPatient(string doc_first, string doc_last, Patient* patient_obj){
+  Doctor* doctor;
+  doctor = searchDoctor(doc_first, doc_last);
+  if (doctor == NULL){
+    cout << "Doctor " << doc_first << " " << doc_last << " not found\n";
+    cout << "Unable to add patient " << patient_obj -> firstname << " " << patient_obj -> lastname << ".\n";
+  }
+  else{ 
+    doctor -> addPatient(patient_obj);
+  }
+}
+
+void Hospital::removePatient(string doc_first, string doc_last, string pat_first, string pat_last){
+  Doctor* doctor = searchDoctor(doc_first, doc_last);
+  if (doctor == NULL){
+    cout << "Doctor " << doc_first << " " << doc_last << " not found\n";
+    cout << "Unable to remove patient " << pat_first << " " << pat_last << ".\n";
+  }
+  else{
+    doctor -> deletePatient(pat_first, pat_last);
+  }
+}
+
+Patient* Hospital::searchPatient(string doc_first,string doc_last, string pat_first, string pat_last){
+  Doctor* doctor = searchDoctor(doc_first, doc_last);
+  if (doctor == NULL){
+    cout << "Doctor " << doc_first << " " << doc_last << " not found\n";
+    cout << "Unable fo find patient " << pat_first << " " << pat_last << ".\n";
+    return NULL;
+  }
+  else{ 
+    Patient* patient = doctor -> searchPatient(pat_first, pat_last);
+    return patient;
+  }    
+}
+
+void Hospital::print(){
+  cout << "-------------\nHospital: " << name << "\n-------------\n";
+  cout << "List of Doctors:\n";
+  Doctor* iter;
+  iter = head;
+  while (iter != NULL){
+    iter -> print();
+    iter = iter -> nextDoc;
+  }
+}
+
+
+
+
+
+
+
+
+
+

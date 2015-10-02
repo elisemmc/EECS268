@@ -1,0 +1,7 @@
+
+HEARTS:		K	J	7	5	3	
+DIAMONDS:	A	Q	T	3	
+SPADES:		A	
+CLUBS:		T	6	2	
+SCORE: 16
+

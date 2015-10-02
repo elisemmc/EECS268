@@ -1,0 +1,14 @@
+#include <iostream>
+#include <string>
+
+#include "calc.h"
+
+using namespace std;
+
+int main(){
+  calc* calc1 = new calc();
+  string infile = "(a+b)*c-d";
+  string postifix = calc1->inPost(infix);
+  return 0;
+} 
+  

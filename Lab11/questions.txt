@@ -1,0 +1,29 @@
+1. 
+Minimum height of a tree with n nodes is log2(n+1) 
+	note: the log is base 2 but I couldn't type it subscript.  
+
+Maximum height of a tree with n nodes is n.
+ 	At this point, it is essentially a linked list.
+
+2.
+Maximum number of nodes in a binary tree of height h is 2^(h-1).
+   
+Minimum number of nodes in a binary tree of height h is h nodes.
+
+3.
+Perfect binary tree: Binary tree with all leaves on the same level.
+
+Full binary tree: Binary tree of height h with no missing nodes.  
+All leaves are at level h and all other nodes have two children.
+
+Complete binary tree: Binary tree of height h that is full to level h-1 and has level h filled from left to right.
+
+Balanced binary tree: Binary tree in which the left and right subtrees of any node have heights that differ by at most 1.
+
+Degenerate binary trees: A binary tree where most or all of the nodes have only one child.
+This binary tree is unbalanced and in the worst case it acts as a linked list.
+
+Binary tree and Binary search tree:
+A binary tree is a tree with a maximum of two child nodes per parent node.
+
+A binary search tree is a binary tree where all items in the left subtree are less than the parent node and greater than the parent node in the right subtree.

@@ -1,0 +1,7 @@
+exp a/b+d*c-e*f+d
+map a 1.0
+map b 5.0
+map c 3.0
+map d 2.0
+map e 4.0
+map f 6.0

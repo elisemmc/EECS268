@@ -1,0 +1,30 @@
+1. A stack has several basic methods.  I will use s for the name of my example stack.
+
+  stack<char> s; //makes a new character stack s;
+  s.push(v);  //will push v onto the top of the stack.
+  s.top();  //will return the top of the stack.  if following a push function, it will show what you just pushed on top of the stack.
+  s.pop();  //will pop the top value off of the stack.
+  s.empty();  //will return true if the stack is empty.
+  s.size() //returns the size of the stack.
+
+  A queue differs from a stack in the way that it returns and inputs variables (FILO).  A stack will always add and remove from the same side. and a queue will remove from the opposite side that it adds to (FIFO).
+
+Stack Example
+s.push(1);       //1
+s.push(2);       //1 2
+cout << s.top(); //1 2  /prints out 2/
+s.pop();         //1 
+s.push(3);       //1 3
+
+Queue Example (using std library queue)
+q.push(1);         //1
+q.push(2);         //1 2
+cout << s.front(); //1 2  /prints out 1/
+q.pop();           //2
+q.push(3);         //2 3
+
+2.I used the std library stack which I cannot seem to find if it is an array based or list based stack.  If I were to write my own stack for this lab I would probably pick to use an array based stack because due to the short nature of the inputted strings it would be unlikely that I would have to resize the array and the coding would be simpler to write.  If I were to write the stack, I should probably use the linked list based because it is more efficient in terms of computer processing.
+
+An array based stack will be easier to write, but will have a limit on how large the stack can get until the array must be resized.  Resizing will take more processing time than simply adding to a linked list.
+
+A linked list based stack can grow/shrink as needed without having to be resized.  A stack never has to be traversed so you don't lose processing time to traversal like in the list.

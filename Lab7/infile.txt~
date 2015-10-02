@@ -1,0 +1,5 @@
+exp a+b+(c-b)*d
+map a 1.0
+map b 2.0
+map c 3.0
+map d 7.0

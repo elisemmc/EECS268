@@ -1,0 +1,4 @@
+add John Smith
+add Jane Doe
+remove Smith
+print Doe

@@ -1,0 +1,7 @@
+1. Private inheritance
+
+2. If you have a deep copy constructor, you have a list with its own nodes already included.  If you then take an existing list and want to make it equivalent to another list you cannot simply take the head node and assign new nodes to it.  You must first delete all of the nodes contained in the list.  If you fail to delete all of the nodes inside of a list before changing the nodes via the = operator, you will memory leak all of the nodes contained inside the list previously because the pointer will now point to the copied list and not the original values of the list.  To fix this you would have to make sure that the list that you are assigning the copied list to is empty.  If it is not empty you have to delete all existing nodes before copying the new nodes into it.
+
+3. The makefile is different in the way that it is much simpler.  It only compiles main.cpp and PriorityQueue.h and because of how these include all of the other files, the compiler knows how to compile it without the makefile explicitly listing each component.  There is also the fact that the cpp file is included at the end of the PriorityQueue so PriorityQueue.cpp will compile if PriorityQueue.h is compiled (along with everything included in that file)
+
+4. This is because the ascii code for z has the highest numerical value and we have prioritized higher numbers towards the front of the list.  If we were to prioritize lower numerical values to the front of this list, then the letters would be placed in alphabetical order.
